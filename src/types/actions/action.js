@@ -132,11 +132,16 @@ class Action {
 		return;
 	}
 
+	updateCurrentIndex() {
+		this.context.currentIndex += 1;
+	}
+
 	/**
 	 * @returns {*} The output of the action.
 	 */
 	execute() {
 		return this.run();
+		this.updateCurrentIndex();
 	}
 }
 module.exports = Action;

@@ -7,7 +7,7 @@ class MathAction extends Action {
 	 */
 	getOperation() {
 		if (this.parameters.mathOperation === "…") {
-			return this.parameters.scientificMathOperation;
+			return (this.parameters.scientificMathOperation) ? this.parameters.scientificMathOperation : null;
 		}
 		return this.parameters.mathOperation;
 	}
@@ -30,6 +30,7 @@ class MathAction extends Action {
 	performOperation(operation, operandA, operandB) {
 		switch (operation) {
 			case undefined:
+			case "+":
 				return operandA + operandB;
 			case "-":
 				return operandA - operandB;

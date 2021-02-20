@@ -84,7 +84,7 @@ class ShortcutExecutor {
 			const actionOutput = await actionInstance.execute();
 			context.input = actionOutput;
 			if (actionInstance.parameters.UUID) {
-				context.variables[actionInstance.parameters.UUID] = actionOutput;
+				context.magicVariables[actionInstance.parameters.UUID] = actionOutput;
 			}
 
 			actionInstance.log("resulting context of previous: %O", context);
@@ -105,11 +105,13 @@ class ShortcutExecutor {
 
 		const context = new Context(this.initialInput);
 
+		// To do: change to a while loop to support control flow
 		for await (const rawAction of metadata.actions) {
 			await this.executeAction(rawAction, context);
+			/* Is this If statement redundant? Commenting out for now, may delete later
 			if (rawAction.parameters.UUID) {
-				context.variables[rawAction.parameters.UUID] = context.input;
-			}
+				context.magicVariables[rawAction.parameters.UUID] = context.input;
+			}*/
 		}
 
 		return context.input;

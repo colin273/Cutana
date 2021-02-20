@@ -3,9 +3,9 @@ const Action = require("../types/actions/action.js");
 class URLEncodeAction extends Action {
 	run() {
 		if (this.parameters.encodeMode === "Decode") {
-			return decodeURI(this.parameters.input);
+			return decodeURIComponent(this.parameters.input);
 		} else {
-			return encodeURI(this.parameters.input);
+			return encodeURIComponent(this.parameters.input);
 		}
 	}
 }
