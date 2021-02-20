@@ -105,8 +105,8 @@ class ShortcutExecutor {
 
 		const context = new Context(this.initialInput);
 
-		// To do: change to a while loop to support control flow
-		for await (const rawAction of metadata.actions) {
+		while (context.currentIndex < metadata.actions.length) {
+			const rawAction = metadata.actions[context.currentIndex]
 			await this.executeAction(rawAction, context);
 			/* Is this If statement redundant? Commenting out for now, may delete later
 			if (rawAction.parameters.UUID) {
