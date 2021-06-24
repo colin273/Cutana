@@ -59,7 +59,8 @@ class MathAction extends Action {
 			case "∛x":
 				return Math.cbrt(operandA);
 			case "x!":
-				for (let index = operandA - 1; index > 0; index--) {
+				if (operandA < 2) return 1;
+				for (let index = operandA - 1; index >= 2; index--) {
 					operandA *= index;
 				}
 				return operandA;
