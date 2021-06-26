@@ -1,8 +1,5 @@
 const Action = require("../types/actions/action.js");
 
-const chance = require("chance");
-const random = new chance.Chance();
-
 class RandomAction extends Action {
 	run() {
 		const min = Math.floor(parseFloat(this.parameters.randomNumberMinimum));
@@ -12,10 +9,7 @@ class RandomAction extends Action {
 			return null;
 		}
 
-		return random.integer({
-			max,
-			min,
-		});
+		return Math.floor(Math.random() * (max + 1 - min)) + min
 	}
 }
 RandomAction.identifier = "is.workflow.actions.number.random";
